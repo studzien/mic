@@ -1,4 +1,4 @@
-package pl.edu.agh.mic.services;
+package pl.edu.agh.mic.ws;
 
 import javax.jws.WebService;
 

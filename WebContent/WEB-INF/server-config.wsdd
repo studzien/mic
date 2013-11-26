@@ -23,21 +23,21 @@
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:service name="TestService" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="sum" qname="ns1:sum" returnQName="ns1:sumReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://services.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+  <ns2:operation name="sum" qname="ns1:sum" returnQName="ns1:sumReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:add1" type="xsd:int"/>
    <ns2:parameter qname="ns1:add2" type="xsd:int"/>
   </ns2:operation>
-  <ns1:operation name="multiply" qname="ns2:multiply" returnQName="ns2:multiplyReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://services.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="multiply" qname="ns2:multiply" returnQName="ns2:multiplyReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:mul1" type="xsd:int"/>
    <ns1:parameter qname="ns2:mul2" type="xsd:int"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="sum multiply"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="TestService"/>
-  <ns1:parameter name="className" value="pl.edu.agh.mic.services.TestService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl"/>
   <ns1:parameter name="wsdlServicePort" value="TestService"/>
-  <ns1:parameter name="schemaQualified" value="http://services.mic.agh.edu.pl"/>
-  <ns1:parameter name="wsdlTargetNamespace" value="http://services.mic.agh.edu.pl"/>
+  <ns1:parameter name="className" value="pl.edu.agh.mic.ws.TestService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://ws.mic.agh.edu.pl"/>
   <ns1:parameter name="wsdlServiceElement" value="TestServiceService"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
@@ -45,6 +45,45 @@
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
   <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="MicService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="takeOwnership" qname="ns3:takeOwnership" returnQName="ns3:takeOwnershipReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:ticketId" type="xsd:string"/>
+   <ns1:parameter qname="ns3:userId" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="evalEta" qname="ns4:evalEta" returnQName="ns4:evalEtaReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:ticketId" type="xsd:string"/>
+   <ns1:parameter qname="ns4:time" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="addDecission" qname="ns5:addDecission" returnQName="ns5:addDecissionReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:ticketId" type="xsd:string"/>
+   <ns1:parameter qname="ns5:type" type="xsd:string"/>
+   <ns1:parameter qname="ns5:decidedBy" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="listTickets" qname="ns6:listTickets" returnQName="ns6:listTicketsReturn" returnType="ns7:Ticket" soapAction="" xmlns:ns6="http://ws.mic.agh.edu.pl" xmlns:ns7="http://model.mic.agh.edu.pl">
+   <ns1:parameter qname="ns6:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="addTicket" qname="ns8:addTicket" returnQName="ns8:addTicketReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:description" type="xsd:string"/>
+   <ns1:parameter qname="ns8:createdBy" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="attachDoc" qname="ns9:attachDoc" returnQName="ns9:attachDocReturn" returnType="xsd:boolean" soapAction="" xmlns:ns9="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:ticketId" type="xsd:string"/>
+   <ns1:parameter qname="ns9:document" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="requestEval" qname="ns10:requestEval" returnQName="ns10:requestEvalReturn" returnType="xsd:boolean" soapAction="" xmlns:ns10="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:ticketId" type="xsd:string"/>
+   <ns1:parameter qname="ns10:remarks" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="takeOwnership addDecission requestEval addTicket attachDoc listTickets evalEta"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="MicService"/>
+  <ns1:parameter name="className" value="pl.edu.agh.mic.ws.MicService"/>
+  <ns1:parameter name="wsdlServicePort" value="MicService"/>
+  <ns1:parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl,http://model.mic.agh.edu.pl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://ws.mic.agh.edu.pl"/>
+  <ns1:parameter name="wsdlServiceElement" value="MicServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:Ticket" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:pl.edu.agh.mic.model.Ticket" xmlns:ns11="http://model.mic.agh.edu.pl"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

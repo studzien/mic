@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MicServiceService WSDL service -->
+
+  <service name="MicService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws.mic.agh.edu.pl"/>
+      <parameter name="wsdlServiceElement" value="MicServiceService"/>
+      <parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl,http://model.mic.agh.edu.pl"/>
+      <parameter name="wsdlServicePort" value="MicService"/>
+      <parameter name="className" value="pl.edu.agh.mic.ws.MicService"/>
+      <parameter name="wsdlPortType" value="MicService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="takeOwnership" qname="operNS:takeOwnership" returnQName="retNS:takeOwnershipReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ticketId" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="evalEta" qname="operNS:evalEta" returnQName="retNS:evalEtaReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ticketId" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:time" type="tns:dateTime"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addDecission" qname="operNS:addDecission" returnQName="retNS:addDecissionReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ticketId" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:type" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:decidedBy" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://model.mic.agh.edu.pl" name="listTickets" qname="operNS:listTickets" returnQName="retNS:listTicketsReturn" returnType="rtns:Ticket" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addTicket" qname="operNS:addTicket" returnQName="retNS:addTicketReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:description" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:createdBy" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="attachDoc" qname="operNS:attachDoc" returnQName="retNS:attachDocReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ticketId" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:document" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws.mic.agh.edu.pl" xmlns:retNS="http://ws.mic.agh.edu.pl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="requestEval" qname="operNS:requestEval" returnQName="retNS:requestEvalReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ticketId" type="tns:string"/>
+        <parameter xmlns:pns="http://ws.mic.agh.edu.pl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:remarks" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="takeOwnership addDecission requestEval addTicket attachDoc listTickets evalEta"/>
+
+      <typeMapping xmlns:ns="http://model.mic.agh.edu.pl" qname="ns:Ticket" type="java:pl.edu.agh.mic.model.Ticket" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

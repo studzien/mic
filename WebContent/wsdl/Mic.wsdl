@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws.mic.agh.edu.pl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws.mic.agh.edu.pl" xmlns:intf="http://ws.mic.agh.edu.pl" xmlns:tns1="http://model.mic.agh.edu.pl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws.mic.agh.edu.pl" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.mic.agh.edu.pl"/>
+   <element name="takeOwnership">
+    <complexType>
+     <sequence>
+      <element name="ticketId" type="xsd:string"/>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="takeOwnershipResponse">
+    <complexType>
+     <sequence>
+      <element name="takeOwnershipReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="evalEta">
+    <complexType>
+     <sequence>
+      <element name="ticketId" type="xsd:string"/>
+      <element name="time" type="xsd:dateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="evalEtaResponse">
+    <complexType>
+     <sequence>
+      <element name="evalEtaReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDecission">
+    <complexType>
+     <sequence>
+      <element name="ticketId" type="xsd:string"/>
+      <element name="type" type="xsd:string"/>
+      <element name="decidedBy" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDecissionResponse">
+    <complexType>
+     <sequence>
+      <element name="addDecissionReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listTickets">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listTicketsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="listTicketsReturn" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addTicket">
+    <complexType>
+     <sequence>
+      <element name="description" type="xsd:string"/>
+      <element name="createdBy" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addTicketResponse">
+    <complexType>
+     <sequence>
+      <element name="addTicketReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="attachDoc">
+    <complexType>
+     <sequence>
+      <element name="ticketId" type="xsd:string"/>
+      <element name="document" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="attachDocResponse">
+    <complexType>
+     <sequence>
+      <element name="attachDocReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="requestEval">
+    <complexType>
+     <sequence>
+      <element name="ticketId" type="xsd:string"/>
+      <element name="remarks" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="requestEvalResponse">
+    <complexType>
+     <sequence>
+      <element name="requestEvalReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="listTicketsRequest">
+
+      <wsdl:part element="impl:listTickets" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="requestEvalRequest">
+
+      <wsdl:part element="impl:requestEval" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="requestEvalResponse">
+
+      <wsdl:part element="impl:requestEvalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listTicketsResponse">
+
+      <wsdl:part element="impl:listTicketsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="takeOwnershipResponse">
+
+      <wsdl:part element="impl:takeOwnershipResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="attachDocResponse">
+
+      <wsdl:part element="impl:attachDocResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDecissionResponse">
+
+      <wsdl:part element="impl:addDecissionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="evalEtaResponse">
+
+      <wsdl:part element="impl:evalEtaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTicketRequest">
+
+      <wsdl:part element="impl:addTicket" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTicketResponse">
+
+      <wsdl:part element="impl:addTicketResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="attachDocRequest">
+
+      <wsdl:part element="impl:attachDoc" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="evalEtaRequest">
+
+      <wsdl:part element="impl:evalEta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDecissionRequest">
+
+      <wsdl:part element="impl:addDecission" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="takeOwnershipRequest">
+
+      <wsdl:part element="impl:takeOwnership" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Mic">
+
+      <wsdl:operation name="takeOwnership">
+
+         <wsdl:input message="impl:takeOwnershipRequest" name="takeOwnershipRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:takeOwnershipResponse" name="takeOwnershipResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="evalEta">
+
+         <wsdl:input message="impl:evalEtaRequest" name="evalEtaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:evalEtaResponse" name="evalEtaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDecission">
+
+         <wsdl:input message="impl:addDecissionRequest" name="addDecissionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addDecissionResponse" name="addDecissionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listTickets">
+
+         <wsdl:input message="impl:listTicketsRequest" name="listTicketsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listTicketsResponse" name="listTicketsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addTicket">
+
+         <wsdl:input message="impl:addTicketRequest" name="addTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addTicketResponse" name="addTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="attachDoc">
+
+         <wsdl:input message="impl:attachDocRequest" name="attachDocRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:attachDocResponse" name="attachDocResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="requestEval">
+
+         <wsdl:input message="impl:requestEvalRequest" name="requestEvalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:requestEvalResponse" name="requestEvalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MicSoapBinding" type="impl:Mic">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="takeOwnership">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="takeOwnershipRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="takeOwnershipResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="evalEta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="evalEtaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="evalEtaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDecission">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addDecissionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addDecissionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listTickets">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listTicketsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listTicketsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addTicketRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addTicketResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="attachDoc">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="attachDocRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="attachDocResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="requestEval">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="requestEvalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="requestEvalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MicService">
+
+      <wsdl:port binding="impl:MicSoapBinding" name="Mic">
+
+         <wsdlsoap:address location="http://localhost:8080/mic/services/Mic"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

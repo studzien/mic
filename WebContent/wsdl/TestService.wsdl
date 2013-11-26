@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://services.mic.agh.edu.pl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.mic.agh.edu.pl" xmlns:intf="http://services.mic.agh.edu.pl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://ws.mic.agh.edu.pl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws.mic.agh.edu.pl" xmlns:intf="http://ws.mic.agh.edu.pl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
-  <schema elementFormDefault="qualified" targetNamespace="http://services.mic.agh.edu.pl" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema elementFormDefault="qualified" targetNamespace="http://ws.mic.agh.edu.pl" xmlns="http://www.w3.org/2001/XMLSchema">
    <element name="sum">
     <complexType>
      <sequence>
@@ -37,6 +37,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
+   <wsdl:message name="sumResponse">
+
+      <wsdl:part element="impl:sumResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="multiplyResponse">
 
       <wsdl:part element="impl:multiplyResponse" name="parameters">
@@ -48,14 +56,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="multiplyRequest">
 
       <wsdl:part element="impl:multiply" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="sumResponse">
-
-      <wsdl:part element="impl:sumResponse" name="parameters">
 
       </wsdl:part>
 
