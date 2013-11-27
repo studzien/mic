@@ -1,5 +1,11 @@
 package pl.edu.agh.mic.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.ektorp.Attachment;
+import org.ektorp.support.CouchDbDocument;
+import org.ektorp.support.TypeDiscriminator;
+
 
 /**
  * Ticket represents one, unique record received from insurance company.
@@ -7,9 +13,11 @@ package pl.edu.agh.mic.model;
  * @author filip
  * 
  */
-public class Ticket {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@TypeDiscriminator("doc.model === 'Ticket'")
+public class Ticket extends CouchDbDocument {
 
-	private final String id;
+	private static final long serialVersionUID = 1L;
 
 	private final String createdBy;
 
@@ -25,13 +33,14 @@ public class Ticket {
 
 	private String description;
 	
+	private final String model = "Ticket";
+	
 	public Ticket() {
-		this(null, null, null);
+		this(null, null);
 	}
 
-	public Ticket(String id, String createdBy, String createdDate) {
+	public Ticket(String createdBy, String createdDate) {
 		super();
-		this.id = id;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
@@ -76,10 +85,6 @@ public class Ticket {
 		this.description = description;
 	}
 
-	public String getId() {
-		return id;
-	}
-
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -87,5 +92,21 @@ public class Ticket {
 	public String getCreatedDate() {
 		return createdDate;
 	}
-	
+
+	public String getModel() {
+		return model;
+	}
+
+	@Override
+	@JsonIgnore
+	public void addInlineAttachment(Attachment a) {
+		super.addInlineAttachment(a);
+	}
+
+	@Override
+	@JsonIgnore
+	public void removeAttachment(String id) {
+		super.removeAttachment(id);
+	}
+
 }
