@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.jws.WebService;
 
+import org.ektorp.Attachment;
+
 import pl.edu.agh.mic.model.Ticket;
 
 @WebService(targetNamespace = "http://mic.agh.edu.pl/wsdl")
@@ -19,8 +21,20 @@ public interface MicServiceWs {
 	
 	public boolean evalEta(String ticketId, Date time);
 	
-	public boolean attachDoc(String ticketId, String document);
+	public boolean attachDoc(String ticketId, String name, String mime, String cotent);
+	
+	public boolean deleteDoc(String ticketId, String name);
+	
+	public Attachment getAttachment(String ticketId, String name);
 	
 	public Ticket[] listTickets(String userId);
+	
+	public Ticket getTicket(String id);
+	
+	public Ticket[] getTickets(String userId);
+	
+	public Ticket[] getAllTickets();
+	
+	public Ticket[] getTicketHistory(String id);
 
 }

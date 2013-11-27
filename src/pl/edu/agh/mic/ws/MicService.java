@@ -57,7 +57,7 @@ public class MicService implements MicServiceWs {
 			Ticket ticket = db.get(Ticket.class, ticketId);
 			Decision decision = new Decision(decidedBy, type);
 			db.create(decision);
-			ticket.setDecissionId(decision.getId());
+			ticket.setDecision(decision);
 			db.update(ticket);
 			return true;
 		}
@@ -71,7 +71,7 @@ public class MicService implements MicServiceWs {
 		try {
 			CouchDbConnector db = connect();
 			Ticket ticket = db.get(Ticket.class, ticketId);
-			Decision decision = db.get(Decision.class, ticket.getDecissionId());
+			Decision decision = db.get(Decision.class, ticket.getDecision().getId());
 			decision.setRemarks(remarks);
 			db.update(decision);
 			return true;
@@ -97,11 +97,11 @@ public class MicService implements MicServiceWs {
 	}
 
 	@Override
-	public boolean attachDoc(String ticketId, String document) {
+	public boolean attachDoc(String ticketId, String name, String mime, String cotent) {
 		try {
 			CouchDbConnector db = connect();
 			Ticket ticket = db.get(Ticket.class, ticketId);
-			Attachment attachement = new Attachment("attachment_id", document, "image/jpeg");
+			Attachment attachement = new Attachment(name, cotent, mime);
 			ticket.addInlineAttachment(attachement);
 			db.update(ticket);
 			return true;
@@ -139,6 +139,42 @@ public class MicService implements MicServiceWs {
 	private TicketRepository repository() {
 		CouchDbConnector db = connect();
 		return new TicketRepository(db);
+	}
+
+	@Override
+	public boolean deleteDoc(String ticketId, String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Attachment getAttachment(String ticketId, String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket getTicket(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket[] getTickets(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket[] getAllTickets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket[] getTicketHistory(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

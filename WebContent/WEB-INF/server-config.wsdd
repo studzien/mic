@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -32,11 +32,11 @@
    <ns1:parameter qname="ns2:mul2" type="xsd:int"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="sum multiply"/>
-  <ns1:parameter name="wsdlPortType" value="TestService"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl"/>
-  <ns1:parameter name="wsdlServicePort" value="TestService"/>
+  <ns1:parameter name="wsdlPortType" value="TestService"/>
   <ns1:parameter name="className" value="pl.edu.agh.mic.ws.TestService"/>
+  <ns1:parameter name="wsdlServicePort" value="TestService"/>
+  <ns1:parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://ws.mic.agh.edu.pl"/>
   <ns1:parameter name="wsdlServiceElement" value="TestServiceService"/>
  </ns1:service>
@@ -45,6 +45,10 @@
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
   <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="MicService" provider="java:RPC" style="wrapped" use="literal">
   <ns1:operation name="takeOwnership" qname="ns3:takeOwnership" returnQName="ns3:takeOwnershipReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://ws.mic.agh.edu.pl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -76,18 +80,14 @@
    <ns1:parameter qname="ns10:remarks" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="takeOwnership addDecission requestEval addTicket attachDoc listTickets evalEta"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="MicService"/>
-  <ns1:parameter name="className" value="pl.edu.agh.mic.ws.MicService"/>
-  <ns1:parameter name="wsdlServicePort" value="MicService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://ws.mic.agh.edu.pl,http://model.mic.agh.edu.pl"/>
+  <ns1:parameter name="wsdlServicePort" value="MicService"/>
+  <ns1:parameter name="className" value="pl.edu.agh.mic.ws.MicService"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://ws.mic.agh.edu.pl"/>
   <ns1:parameter name="wsdlServiceElement" value="MicServiceService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:Ticket" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:pl.edu.agh.mic.model.Ticket" xmlns:ns11="http://model.mic.agh.edu.pl"/>
- </ns1:service>
- <ns1:service name="Version" provider="java:RPC">
-  <ns1:parameter name="allowedMethods" value="getVersion"/>
-  <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

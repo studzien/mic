@@ -25,7 +25,7 @@ public class Ticket extends CouchDbDocument {
 
 	private String status;
 
-	private String decissionId;
+	private Decision decision;
 
 	private String eta;
 
@@ -53,12 +53,12 @@ public class Ticket extends CouchDbDocument {
 		this.status = status;
 	}
 
-	public String getDecissionId() {
-		return decissionId;
+	public Decision getDecision() {
+		return decision;
 	}
 
-	public void setDecissionId(String decissionId) {
-		this.decissionId = decissionId;
+	public void setDecision(Decision decision) {
+		this.decision = decision;
 	}
 
 	public String getEta() {
