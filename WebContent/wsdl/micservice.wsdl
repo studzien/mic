@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MicServiceService" targetNamespace="http://ws.mic.agh.edu.pl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://ws.mic.agh.edu.pl/" schemaLocation="micservice_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="attachDoc">
+    <wsdl:part name="parameters" element="tns:attachDoc">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evalEta">
+    <wsdl:part name="parameters" element="tns:evalEta">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketHistory">
+    <wsdl:part name="parameters" element="tns:getTicketHistory">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocResponse">
+    <wsdl:part name="parameters" element="tns:deleteDocResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evalEtaResponse">
+    <wsdl:part name="parameters" element="tns:evalEtaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="takeOwnership">
+    <wsdl:part name="parameters" element="tns:takeOwnership">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTickets">
+    <wsdl:part name="parameters" element="tns:getTickets">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="attachDocResponse">
+    <wsdl:part name="parameters" element="tns:attachDocResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestEvalResponse">
+    <wsdl:part name="parameters" element="tns:requestEvalResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestEval">
+    <wsdl:part name="parameters" element="tns:requestEval">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="takeOwnershipResponse">
+    <wsdl:part name="parameters" element="tns:takeOwnershipResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketResponse">
+    <wsdl:part name="parameters" element="tns:getTicketResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicket">
+    <wsdl:part name="parameters" element="tns:getTicket">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTickets">
+    <wsdl:part name="parameters" element="tns:getAllTickets">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTicketResponse">
+    <wsdl:part name="parameters" element="tns:addTicketResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachment">
+    <wsdl:part name="parameters" element="tns:getAttachment">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketsResponse">
+    <wsdl:part name="parameters" element="tns:getTicketsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTicket">
+    <wsdl:part name="parameters" element="tns:addTicket">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDecissionResponse">
+    <wsdl:part name="parameters" element="tns:addDecissionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listTickets">
+    <wsdl:part name="parameters" element="tns:listTickets">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listTicketsResponse">
+    <wsdl:part name="parameters" element="tns:listTicketsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentResponse">
+    <wsdl:part name="parameters" element="tns:getAttachmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketHistoryResponse">
+    <wsdl:part name="parameters" element="tns:getTicketHistoryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTicketsResponse">
+    <wsdl:part name="parameters" element="tns:getAllTicketsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDecission">
+    <wsdl:part name="parameters" element="tns:addDecission">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDoc">
+    <wsdl:part name="parameters" element="tns:deleteDoc">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MicServiceSEI">
+    <wsdl:operation name="getAllTickets">
+      <wsdl:input name="getAllTickets" message="tns:getAllTickets">
+    </wsdl:input>
+      <wsdl:output name="getAllTicketsResponse" message="tns:getAllTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicketHistory">
+      <wsdl:input name="getTicketHistory" message="tns:getTicketHistory">
+    </wsdl:input>
+      <wsdl:output name="getTicketHistoryResponse" message="tns:getTicketHistoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTicket">
+      <wsdl:input name="addTicket" message="tns:addTicket">
+    </wsdl:input>
+      <wsdl:output name="addTicketResponse" message="tns:addTicketResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDecission">
+      <wsdl:input name="addDecission" message="tns:addDecission">
+    </wsdl:input>
+      <wsdl:output name="addDecissionResponse" message="tns:addDecissionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachment">
+      <wsdl:input name="getAttachment" message="tns:getAttachment">
+    </wsdl:input>
+      <wsdl:output name="getAttachmentResponse" message="tns:getAttachmentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="attachDoc">
+      <wsdl:input name="attachDoc" message="tns:attachDoc">
+    </wsdl:input>
+      <wsdl:output name="attachDocResponse" message="tns:attachDocResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <wsdl:input name="getTicket" message="tns:getTicket">
+    </wsdl:input>
+      <wsdl:output name="getTicketResponse" message="tns:getTicketResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestEval">
+      <wsdl:input name="requestEval" message="tns:requestEval">
+    </wsdl:input>
+      <wsdl:output name="requestEvalResponse" message="tns:requestEvalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="evalEta">
+      <wsdl:input name="evalEta" message="tns:evalEta">
+    </wsdl:input>
+      <wsdl:output name="evalEtaResponse" message="tns:evalEtaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <wsdl:input name="listTickets" message="tns:listTickets">
+    </wsdl:input>
+      <wsdl:output name="listTicketsResponse" message="tns:listTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDoc">
+      <wsdl:input name="deleteDoc" message="tns:deleteDoc">
+    </wsdl:input>
+      <wsdl:output name="deleteDocResponse" message="tns:deleteDocResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTickets">
+      <wsdl:input name="getTickets" message="tns:getTickets">
+    </wsdl:input>
+      <wsdl:output name="getTicketsResponse" message="tns:getTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="takeOwnership">
+      <wsdl:input name="takeOwnership" message="tns:takeOwnership">
+    </wsdl:input>
+      <wsdl:output name="takeOwnershipResponse" message="tns:takeOwnershipResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MicServiceServiceSoapBinding" type="tns:MicServiceSEI">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllTickets">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllTickets">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllTicketsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicketHistory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTicketHistory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketHistoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTicket">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addTicket">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addTicketResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDecission">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addDecission">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addDecissionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachment">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAttachment">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAttachmentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="attachDoc">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="attachDoc">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="attachDocResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestEval">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="requestEval">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="requestEvalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTicket">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="evalEta">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="evalEta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="evalEtaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listTickets">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listTicketsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDoc">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDoc">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDocResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTickets">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTickets">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="takeOwnership">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="takeOwnership">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="takeOwnershipResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MicServiceService">
+    <wsdl:port name="MicServicePort" binding="tns:MicServiceServiceSoapBinding">
+      <soap:address location="http://localhost:8080/mic-new/services/MicServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

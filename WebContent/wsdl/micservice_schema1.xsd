@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.mic.agh.edu.pl/" targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0">
+<xs:element name="addDecission" type="tns:addDecission"/>
+<xs:element name="addDecissionResponse" type="tns:addDecissionResponse"/>
+<xs:element name="addTicket" type="tns:addTicket"/>
+<xs:element name="addTicketResponse" type="tns:addTicketResponse"/>
+<xs:element name="attachDoc" type="tns:attachDoc"/>
+<xs:element name="attachDocResponse" type="tns:attachDocResponse"/>
+<xs:element name="deleteDoc" type="tns:deleteDoc"/>
+<xs:element name="deleteDocResponse" type="tns:deleteDocResponse"/>
+<xs:element name="evalEta" type="tns:evalEta"/>
+<xs:element name="evalEtaResponse" type="tns:evalEtaResponse"/>
+<xs:element name="getAllTickets" type="tns:getAllTickets"/>
+<xs:element name="getAllTicketsResponse" type="tns:getAllTicketsResponse"/>
+<xs:element name="getAttachment" type="tns:getAttachment"/>
+<xs:element name="getAttachmentResponse" type="tns:getAttachmentResponse"/>
+<xs:element name="getTicket" type="tns:getTicket"/>
+<xs:element name="getTicketHistory" type="tns:getTicketHistory"/>
+<xs:element name="getTicketHistoryResponse" type="tns:getTicketHistoryResponse"/>
+<xs:element name="getTicketResponse" type="tns:getTicketResponse"/>
+<xs:element name="getTickets" type="tns:getTickets"/>
+<xs:element name="getTicketsResponse" type="tns:getTicketsResponse"/>
+<xs:element name="listTickets" type="tns:listTickets"/>
+<xs:element name="listTicketsResponse" type="tns:listTicketsResponse"/>
+<xs:element name="requestEval" type="tns:requestEval"/>
+<xs:element name="requestEvalResponse" type="tns:requestEvalResponse"/>
+<xs:element name="takeOwnership" type="tns:takeOwnership"/>
+<xs:element name="takeOwnershipResponse" type="tns:takeOwnershipResponse"/>
+<xs:complexType name="getAllTickets">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getAllTicketsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ticket">
+    <xs:complexContent>
+      <xs:extension base="tns:couchDbDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="decision" type="tns:decision"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="eta" type="xs:string"/>
+          <xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="couchDbDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="revision" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="decision">
+    <xs:complexContent>
+      <xs:extension base="tns:couchDbDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="remarks" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="getTicketHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getTicketHistoryResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addTicketResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addDecission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addDecissionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAttachmentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:attachment"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="attachment">
+    <xs:sequence>
+      <xs:element name="revpos" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="attachDoc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="attachDocResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getTicketResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:ticket"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestEval">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestEvalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="evalEta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="evalEtaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listTickets">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listTicketsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteDoc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteDocResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getTickets">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getTicketsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="takeOwnership">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="takeOwnershipResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
