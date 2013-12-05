@@ -2,6 +2,9 @@ package pl.edu.agh.mic.ws;
 
 import java.util.Date;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import org.ektorp.Attachment;
@@ -11,30 +14,44 @@ import pl.edu.agh.mic.model.Ticket;
 @WebService(name = "MicServiceSEI", targetNamespace = "http://ws.mic.agh.edu.pl/")
 public interface MicServiceSEI {
 	
-	public String addTicket(String description, String createdBy);
+	@WebMethod(operationName = "addTicket", action = "urn:AddTicket")
+	public String addTicket(@WebParam(name = "description") String description,
+			 				@WebParam(name = "createdBy") String createdBy);
 	
-	public boolean takeOwnership(String ticketId, String userId);
+	@WebMethod(operationName = "takeOwnership", action = "urn:TakeOwnership")
+	public boolean takeOwnership(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "userId") String userId);
 	
-	public boolean addDecission(String ticketId, String type, String decidedBy);
+	@WebMethod(operationName = "addDecission", action = "urn:AddDecission")
+	public boolean addDecission(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "type") String type, @WebParam(name = "decidedBy") String decidedBy);
 	
-	public boolean requestEval(String ticketId, String remarks);
+	@WebMethod(operationName = "requestEval", action = "urn:RequestEval")
+	public boolean requestEval(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "remarks") String remarks);
 	
-	public boolean evalEta(String ticketId, Date time);
+	@WebMethod(operationName = "evalEta", action = "urn:EvalEta")
+	public boolean evalEta(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "time") Date time);
 	
-	public boolean attachDoc(String ticketId, String name, String mime, String cotent);
+	@WebMethod(operationName = "attachDoc", action = "urn:AttachDoc")
+	public boolean attachDoc(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "name") String name, @WebParam(name = "mime") String mime, @WebParam(name = "content") String cotent);
 	
-	public boolean deleteDoc(String ticketId, String name);
+	@WebMethod(operationName = "deleteDoc", action = "urn:DeleteDoc")
+	public boolean deleteDoc(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "name") String name);
 	
-	public Attachment getAttachment(String ticketId, String name);
+	@WebMethod(operationName = "getAttachment", action = "urn:GetAttachment")
+	public Attachment getAttachment(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "name") String name);
 	
-	public Ticket[] listTickets(String userId);
+	@WebMethod(operationName = "listTickets", action = "urn:ListTickets")
+	public Ticket[] listTickets(@WebParam(name = "decidedByUserId") String userId);
 	
-	public Ticket getTicket(String id);
+	@WebMethod(operationName = "getTicket", action = "urn:GetTicket")
+	public Ticket getTicket(@WebParam(name = "ticketId") String id);
 	
-	public Ticket[] getTickets(String userId);
+	@WebMethod(operationName = "getTickets", action = "urn:GetTickets")
+	public Ticket[] getTickets(@WebParam(name = "createdByUserId") String userId);
 	
+	@WebMethod(operationName = "getAllTickets", action = "urn:GetAllTickets")
 	public Ticket[] getAllTickets();
 	
-	public Ticket[] getTicketHistory(String id);
+	@WebMethod(operationName = "getTicketHistory", action = "urn:GetTicketHistory")
+	public Ticket[] getTicketHistory(@WebParam(name = "ticketId") String id);
 
 }

@@ -18,7 +18,7 @@ import pl.edu.agh.mic.model.Decision;
 import pl.edu.agh.mic.model.Ticket;
 import pl.edu.agh.mic.model.TicketRepository;
 
-@WebService(targetNamespace = "http://ws.mic.agh.edu.pl/", portName = "MicServicePort", serviceName = "MicServiceService", endpointInterface = "pl.edu.agh.mic.ws.MicServiceSEI")
+@WebService(targetNamespace = "http://ws.mic.agh.edu.pl/", endpointInterface = "pl.edu.agh.mic.ws.MicServiceSEI", portName = "MicServicePort", serviceName = "MicServiceService")
 public class MicService implements MicServiceSEI {
 
 	@Override
