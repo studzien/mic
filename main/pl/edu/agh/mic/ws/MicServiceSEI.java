@@ -4,11 +4,9 @@ import java.util.Date;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import org.ektorp.Attachment;
-
+import pl.edu.agh.mic.model.Attachment;
 import pl.edu.agh.mic.model.Ticket;
 
 @WebService(name = "MicServiceSEI", targetNamespace = "http://ws.mic.agh.edu.pl/")
@@ -40,7 +38,7 @@ public interface MicServiceSEI {
 	public Attachment getAttachment(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "name") String name);
 	
 	@WebMethod(operationName = "listTickets", action = "urn:ListTickets")
-	public Ticket[] listTickets(@WebParam(name = "decidedByUserId") String userId);
+	public Ticket[] listTickets(@WebParam(name = "ownedByUserId") String userId);
 	
 	@WebMethod(operationName = "getTicket", action = "urn:GetTicket")
 	public Ticket getTicket(@WebParam(name = "ticketId") String id);

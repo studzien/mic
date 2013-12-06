@@ -1,10 +1,11 @@
 package pl.edu.agh.mic.model;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.ektorp.Attachment;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
@@ -19,9 +20,9 @@ public class Ticket extends CouchDbDocument {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String createdBy;
+	private String createdBy;
 
-	private final String createdDate;
+	private String createdDate;
 
 	private String status;
 
@@ -32,6 +33,9 @@ public class Ticket extends CouchDbDocument {
 	private String ownerId;
 
 	private String description;
+	
+	@JsonIgnore
+	private String[] attachmentNames;
 	
 	private final String model = "Ticket";
 	
@@ -88,13 +92,29 @@ public class Ticket extends CouchDbDocument {
 	public String getCreatedBy() {
 		return createdBy;
 	}
+	
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
 
 	public String getCreatedDate() {
 		return createdDate;
 	}
+	
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
 
 	public String getModel() {
 		return model;
+	}
+
+	public String[] getAttachmentNames() {
+		return attachmentNames;
+	}
+
+	public void setAttachmentNames(String[] attachmentNames) {
+		this.attachmentNames = attachmentNames;
 	}
 
 	@Override
@@ -109,4 +129,5 @@ public class Ticket extends CouchDbDocument {
 		super.removeAttachment(id);
 	}
 
+	
 }

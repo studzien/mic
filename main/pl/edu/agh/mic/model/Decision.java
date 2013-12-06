@@ -1,8 +1,9 @@
 package pl.edu.agh.mic.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Remarks for the ticket made by workshop

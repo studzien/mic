@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions name="MicServiceService" targetNamespace="http://ws.mic.agh.edu.pl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
   <wsdl:types>
-    <xs:schema targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="addDecission" type="tns:addDecission"/>
 
@@ -69,6 +69,9 @@
     <xs:complexContent>
       <xs:extension base="tns:couchDbDocument">
         <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="attachmentNames" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+          <xs:element minOccurs="0" name="createdDate" type="xs:string"/>
           <xs:element minOccurs="0" name="decision" type="tns:decision"/>
           <xs:element minOccurs="0" name="description" type="xs:string"/>
           <xs:element minOccurs="0" name="eta" type="xs:string"/>
@@ -150,7 +153,10 @@
 
   <xs:complexType name="attachment">
     <xs:sequence>
-      <xs:element name="revpos" type="xs:int"/>
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="mime" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="ticketId" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -209,7 +215,7 @@
 
   <xs:complexType name="listTickets">
     <xs:sequence>
-      <xs:element name="decidedByUserId" type="xs:string"/>
+      <xs:element minOccurs="0" name="ownedByUserId" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 
