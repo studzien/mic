@@ -1,0 +1,781 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" name="MicServiceService" targetNamespace="http://ws.mic.agh.edu.pl/">
+  <wsdl:types>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" elementFormDefault="unqualified" targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0">
+
+  
+  <xs:element name="addDecission" type="tns:addDecission"/>
+
+  
+  <xs:element name="addDecissionResponse" type="tns:addDecissionResponse"/>
+
+  
+  <xs:element name="addTicket" type="tns:addTicket"/>
+
+  
+  <xs:element name="addTicketResponse" type="tns:addTicketResponse"/>
+
+  
+  <xs:element name="attachDoc" type="tns:attachDoc"/>
+
+  
+  <xs:element name="attachDocResponse" type="tns:attachDocResponse"/>
+
+  
+  <xs:element name="deleteDoc" type="tns:deleteDoc"/>
+
+  
+  <xs:element name="deleteDocResponse" type="tns:deleteDocResponse"/>
+
+  
+  <xs:element name="evalEta" type="tns:evalEta"/>
+
+  
+  <xs:element name="evalEtaResponse" type="tns:evalEtaResponse"/>
+
+  
+  <xs:element name="getAllTickets" type="tns:getAllTickets"/>
+
+  
+  <xs:element name="getAllTicketsResponse" type="tns:getAllTicketsResponse"/>
+
+  
+  <xs:element name="getAttachment" type="tns:getAttachment"/>
+
+  
+  <xs:element name="getAttachmentResponse" type="tns:getAttachmentResponse"/>
+
+  
+  <xs:element name="getTicket" type="tns:getTicket"/>
+
+  
+  <xs:element name="getTicketHistory" type="tns:getTicketHistory"/>
+
+  
+  <xs:element name="getTicketHistoryResponse" type="tns:getTicketHistoryResponse"/>
+
+  
+  <xs:element name="getTicketResponse" type="tns:getTicketResponse"/>
+
+  
+  <xs:element name="getTickets" type="tns:getTickets"/>
+
+  
+  <xs:element name="getTicketsResponse" type="tns:getTicketsResponse"/>
+
+  
+  <xs:element name="listTickets" type="tns:listTickets"/>
+
+  
+  <xs:element name="listTicketsResponse" type="tns:listTicketsResponse"/>
+
+  
+  <xs:element name="requestEval" type="tns:requestEval"/>
+
+  
+  <xs:element name="requestEvalResponse" type="tns:requestEvalResponse"/>
+
+  
+  <xs:element name="takeOwnership" type="tns:takeOwnership"/>
+
+  
+  <xs:element name="takeOwnershipResponse" type="tns:takeOwnershipResponse"/>
+
+  
+  <xs:complexType name="getAllTickets">
+    
+    <xs:sequence/>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getAllTicketsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="ticket">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:couchDbDocument">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="attachmentNames" nillable="true" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="createdBy" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="createdDate" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="decision" type="tns:decision"/>
+          
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="eta" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="ownerId" type="xs:string"/>
+          
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="couchDbDocument">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      
+      <xs:element minOccurs="0" name="revision" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="decision">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:couchDbDocument">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="remarks" type="xs:string"/>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTicketHistory">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTicketHistoryResponse">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="addTicket">
+    
+    <xs:sequence>
+      
+      <xs:element name="description" type="xs:string"/>
+      
+      <xs:element name="createdBy" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="addTicketResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="addDecission">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="type" type="xs:string"/>
+      
+      <xs:element name="decidedBy" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="addDecissionResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getAttachment">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="name" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getAttachmentResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:attachment"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="attachment">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+      
+      <xs:element minOccurs="0" name="mime" type="xs:string"/>
+      
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      
+      <xs:element minOccurs="0" name="ticketId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="attachDoc">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="name" type="xs:string"/>
+      
+      <xs:element name="mime" type="xs:string"/>
+      
+      <xs:element name="content" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="attachDocResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTicket">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTicketResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:ticket"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="requestEval">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="remarks" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="requestEvalResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="evalEta">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="time" type="xs:dateTime"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="evalEtaResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="listTickets">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="ownedByUserId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="listTicketsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="deleteDoc">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="name" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="deleteDocResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTickets">
+    
+    <xs:sequence>
+      
+      <xs:element name="createdByUserId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="getTicketsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ticket"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="takeOwnership">
+    
+    <xs:sequence>
+      
+      <xs:element name="ticketId" type="xs:string"/>
+      
+      <xs:element name="userId" type="xs:string"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+  
+  <xs:complexType name="takeOwnershipResponse">
+    
+    <xs:sequence>
+      
+      <xs:element name="return" type="xs:boolean"/>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="attachDoc">
+    <wsdl:part element="tns:attachDoc" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evalEta">
+    <wsdl:part element="tns:evalEta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketHistory">
+    <wsdl:part element="tns:getTicketHistory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocResponse">
+    <wsdl:part element="tns:deleteDocResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evalEtaResponse">
+    <wsdl:part element="tns:evalEtaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="takeOwnership">
+    <wsdl:part element="tns:takeOwnership" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="attachDocResponse">
+    <wsdl:part element="tns:attachDocResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTickets">
+    <wsdl:part element="tns:getTickets" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestEvalResponse">
+    <wsdl:part element="tns:requestEvalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestEval">
+    <wsdl:part element="tns:requestEval" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="takeOwnershipResponse">
+    <wsdl:part element="tns:takeOwnershipResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketResponse">
+    <wsdl:part element="tns:getTicketResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicket">
+    <wsdl:part element="tns:getTicket" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTickets">
+    <wsdl:part element="tns:getAllTickets" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTicketResponse">
+    <wsdl:part element="tns:addTicketResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachment">
+    <wsdl:part element="tns:getAttachment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketsResponse">
+    <wsdl:part element="tns:getTicketsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTicket">
+    <wsdl:part element="tns:addTicket" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDecissionResponse">
+    <wsdl:part element="tns:addDecissionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listTickets">
+    <wsdl:part element="tns:listTickets" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listTicketsResponse">
+    <wsdl:part element="tns:listTicketsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentResponse">
+    <wsdl:part element="tns:getAttachmentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTicketHistoryResponse">
+    <wsdl:part element="tns:getTicketHistoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTicketsResponse">
+    <wsdl:part element="tns:getAllTicketsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDoc">
+    <wsdl:part element="tns:deleteDoc" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDecission">
+    <wsdl:part element="tns:addDecission" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MicServiceSEI">
+    <wsdl:operation name="getAllTickets">
+      <wsdl:input message="tns:getAllTickets" name="getAllTickets">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllTicketsResponse" name="getAllTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicketHistory">
+      <wsdl:input message="tns:getTicketHistory" name="getTicketHistory">
+    </wsdl:input>
+      <wsdl:output message="tns:getTicketHistoryResponse" name="getTicketHistoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTicket">
+      <wsdl:input message="tns:addTicket" name="addTicket">
+    </wsdl:input>
+      <wsdl:output message="tns:addTicketResponse" name="addTicketResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDecission">
+      <wsdl:input message="tns:addDecission" name="addDecission">
+    </wsdl:input>
+      <wsdl:output message="tns:addDecissionResponse" name="addDecissionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachment">
+      <wsdl:input message="tns:getAttachment" name="getAttachment">
+    </wsdl:input>
+      <wsdl:output message="tns:getAttachmentResponse" name="getAttachmentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="attachDoc">
+      <wsdl:input message="tns:attachDoc" name="attachDoc">
+    </wsdl:input>
+      <wsdl:output message="tns:attachDocResponse" name="attachDocResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <wsdl:input message="tns:getTicket" name="getTicket">
+    </wsdl:input>
+      <wsdl:output message="tns:getTicketResponse" name="getTicketResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestEval">
+      <wsdl:input message="tns:requestEval" name="requestEval">
+    </wsdl:input>
+      <wsdl:output message="tns:requestEvalResponse" name="requestEvalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="evalEta">
+      <wsdl:input message="tns:evalEta" name="evalEta">
+    </wsdl:input>
+      <wsdl:output message="tns:evalEtaResponse" name="evalEtaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <wsdl:input message="tns:listTickets" name="listTickets">
+    </wsdl:input>
+      <wsdl:output message="tns:listTicketsResponse" name="listTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDoc">
+      <wsdl:input message="tns:deleteDoc" name="deleteDoc">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDocResponse" name="deleteDocResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTickets">
+      <wsdl:input message="tns:getTickets" name="getTickets">
+    </wsdl:input>
+      <wsdl:output message="tns:getTicketsResponse" name="getTicketsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="takeOwnership">
+      <wsdl:input message="tns:takeOwnership" name="takeOwnership">
+    </wsdl:input>
+      <wsdl:output message="tns:takeOwnershipResponse" name="takeOwnershipResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MicServiceServiceSoapBinding" type="tns:MicServiceSEI">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllTickets">
+      <soap12:operation soapAction="urn:GetAllTickets" style="document"/>
+      <wsdl:input name="getAllTickets">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllTicketsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicketHistory">
+      <soap12:operation soapAction="urn:GetTicketHistory" style="document"/>
+      <wsdl:input name="getTicketHistory">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketHistoryResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTicket">
+      <soap12:operation soapAction="urn:AddTicket" style="document"/>
+      <wsdl:input name="addTicket">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addTicketResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addDecission">
+      <soap12:operation soapAction="urn:AddDecission" style="document"/>
+      <wsdl:input name="addDecission">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addDecissionResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachment">
+      <soap12:operation soapAction="urn:GetAttachment" style="document"/>
+      <wsdl:input name="getAttachment">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAttachmentResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="attachDoc">
+      <soap12:operation soapAction="urn:AttachDoc" style="document"/>
+      <wsdl:input name="attachDoc">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="attachDocResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestEval">
+      <soap12:operation soapAction="urn:RequestEval" style="document"/>
+      <wsdl:input name="requestEval">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="requestEvalResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap12:operation soapAction="urn:GetTicket" style="document"/>
+      <wsdl:input name="getTicket">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="evalEta">
+      <soap12:operation soapAction="urn:EvalEta" style="document"/>
+      <wsdl:input name="evalEta">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="evalEtaResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <soap12:operation soapAction="urn:ListTickets" style="document"/>
+      <wsdl:input name="listTickets">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listTicketsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDoc">
+      <soap12:operation soapAction="urn:DeleteDoc" style="document"/>
+      <wsdl:input name="deleteDoc">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDocResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTickets">
+      <soap12:operation soapAction="urn:GetTickets" style="document"/>
+      <wsdl:input name="getTickets">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="takeOwnership">
+      <soap12:operation soapAction="urn:TakeOwnership" style="document"/>
+      <wsdl:input name="takeOwnership">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="takeOwnershipResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MicServiceService">
+    <wsdl:port binding="tns:MicServiceServiceSoapBinding" name="MicServicePort">
+      <soap12:address location="http://localhost:8080/mic/services/MicServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
