@@ -215,10 +215,19 @@ public class MicService implements MicServiceSEI {
 	}
 	
 	private CouchDbConnector connect() {
-		HttpClient httpClient = new StdHttpClient.Builder().build();
-		CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
-		CouchDbConnector db = dbInstance.createConnector("mic_db", true);
-		return db;
+		try {
+			HttpClient httpClient = new StdHttpClient.Builder()
+										.url("http://siatkowkanazywo.pl:5984")
+										.username("mic")
+										.password("va4uwRAb")
+										.build();
+			CouchDbInstance dbInstance = new StdCouchDbInstance(httpClient);
+			CouchDbConnector db = dbInstance.createConnector("mic_db", true);
+			return db;
+		}
+		catch(Exception e) {
+			return null;
+		}
 	}
 	
 	private TicketRepository repository() {
