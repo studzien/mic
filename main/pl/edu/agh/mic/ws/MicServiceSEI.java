@@ -16,6 +16,9 @@ public interface MicServiceSEI {
 	public String addTicket(@WebParam(name = "description") String description,
 			 				@WebParam(name = "createdBy") String createdBy);
 	
+	@WebMethod(operationName = "deleteTicket", action = "urn:DeleteTicket")
+	public boolean deleteTicket(@WebParam(name = "ticketId") String ticketId);
+	
 	@WebMethod(operationName = "takeOwnership", action = "urn:TakeOwnership")
 	public boolean takeOwnership(@WebParam(name = "ticketId") String ticketId, @WebParam(name = "userId") String userId);
 	

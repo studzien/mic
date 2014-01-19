@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions name="MicServiceService" targetNamespace="http://ws.mic.agh.edu.pl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
   <wsdl:types>
-    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema targetNamespace="http://ws.mic.agh.edu.pl/" version="1.0" xmlns:tns="http://ws.mic.agh.edu.pl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="addDecission" type="tns:addDecission"/>
 
@@ -18,6 +18,10 @@
   <xs:element name="deleteDoc" type="tns:deleteDoc"/>
 
   <xs:element name="deleteDocResponse" type="tns:deleteDocResponse"/>
+
+  <xs:element name="deleteTicket" type="tns:deleteTicket"/>
+
+  <xs:element name="deleteTicketResponse" type="tns:deleteTicketResponse"/>
 
   <xs:element name="evalEta" type="tns:evalEta"/>
 
@@ -175,6 +179,19 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="requestEval">
+    <xs:sequence>
+      <xs:element name="ticketId" type="xs:string"/>
+      <xs:element name="remarks" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="requestEvalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="getTicket">
     <xs:sequence>
       <xs:element name="ticketId" type="xs:string"/>
@@ -187,14 +204,13 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="requestEval">
+  <xs:complexType name="deleteTicket">
     <xs:sequence>
       <xs:element name="ticketId" type="xs:string"/>
-      <xs:element name="remarks" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="requestEvalResponse">
+  <xs:complexType name="deleteTicketResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
     </xs:sequence>
@@ -289,12 +305,16 @@
     <wsdl:part name="parameters" element="tns:takeOwnership">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getTickets">
-    <wsdl:part name="parameters" element="tns:getTickets">
+  <wsdl:message name="deleteTicket">
+    <wsdl:part name="parameters" element="tns:deleteTicket">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="attachDocResponse">
     <wsdl:part name="parameters" element="tns:attachDocResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTickets">
+    <wsdl:part name="parameters" element="tns:getTickets">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="requestEvalResponse">
@@ -357,16 +377,20 @@
     <wsdl:part name="parameters" element="tns:getTicketHistoryResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="deleteTicketResponse">
+    <wsdl:part name="parameters" element="tns:deleteTicketResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getAllTicketsResponse">
     <wsdl:part name="parameters" element="tns:getAllTicketsResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="addDecission">
-    <wsdl:part name="parameters" element="tns:addDecission">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="deleteDoc">
     <wsdl:part name="parameters" element="tns:deleteDoc">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDecission">
+    <wsdl:part name="parameters" element="tns:addDecission">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="MicServiceSEI">
@@ -406,16 +430,22 @@
       <wsdl:output name="attachDocResponse" message="tns:attachDocResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="requestEval">
+      <wsdl:input name="requestEval" message="tns:requestEval">
+    </wsdl:input>
+      <wsdl:output name="requestEvalResponse" message="tns:requestEvalResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getTicket">
       <wsdl:input name="getTicket" message="tns:getTicket">
     </wsdl:input>
       <wsdl:output name="getTicketResponse" message="tns:getTicketResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="requestEval">
-      <wsdl:input name="requestEval" message="tns:requestEval">
+    <wsdl:operation name="deleteTicket">
+      <wsdl:input name="deleteTicket" message="tns:deleteTicket">
     </wsdl:input>
-      <wsdl:output name="requestEvalResponse" message="tns:requestEvalResponse">
+      <wsdl:output name="deleteTicketResponse" message="tns:deleteTicketResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="evalEta">
@@ -505,6 +535,15 @@
         <soap12:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap12:operation soapAction="urn:GetTicket" style="document"/>
+      <wsdl:input name="getTicket">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTicketResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="requestEval">
       <soap12:operation soapAction="urn:RequestEval" style="document"/>
       <wsdl:input name="requestEval">
@@ -514,12 +553,12 @@
         <soap12:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getTicket">
-      <soap12:operation soapAction="urn:GetTicket" style="document"/>
-      <wsdl:input name="getTicket">
+    <wsdl:operation name="deleteTicket">
+      <soap12:operation soapAction="urn:DeleteTicket" style="document"/>
+      <wsdl:input name="deleteTicket">
         <soap12:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="getTicketResponse">
+      <wsdl:output name="deleteTicketResponse">
         <soap12:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

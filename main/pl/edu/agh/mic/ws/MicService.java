@@ -31,6 +31,19 @@ public class MicService implements MicServiceSEI {
 		repo.add(ticket);
 		return ticket.getId();
 	}
+	
+	@Override
+	public boolean deleteTicket(String ticketId) {
+		try {
+			TicketRepository repo = repository();
+			Ticket ticket = repo.get(ticketId);
+			repo.remove(ticket);
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
+	}
 
 	@Override
 	public boolean takeOwnership(String ticketId, String userId) {
@@ -234,5 +247,7 @@ public class MicService implements MicServiceSEI {
 		CouchDbConnector db = connect();
 		return new TicketRepository(db);
 	}
+
+	
 	
 }
